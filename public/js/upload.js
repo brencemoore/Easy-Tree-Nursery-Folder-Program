@@ -8,11 +8,13 @@ const uploadConfigs = [
         inputId: 'weeklyReport',
         selectedFileId: 'weeklySelectedFile',
         progressBarId: 'weeklyProgressBar',
+        removeButtonId: 'weeklyRemoveFile',
     },
     {
         inputId: 'BNBReport',
         selectedFileId: 'BNBSelectedFile',
         progressBarId: 'BNBProgressBar',
+        removeButtonId: 'BNBRemoveFile',
     },
 ];
 
@@ -34,28 +36,61 @@ function setupFileUpload(config) {
 
     const progressBar = document.getElementById(config.progressBarId);
 
+    const removeButton = document.getElementById(config.removeButtonId);
+
     // Browse button file selection
     input.addEventListener('change', () => {
         if (input.files.length > 0) {
             const file = input.files[0];
 
+            resetProgress(progressBar);
+
             displaySelectedFile(file, selectedFileText, config.progressBarId);
 
-            resetProgress(progressBar);
+            removeButton.classList.remove('d-none');
         }
     });
 
     // Enable drag and drop
-    const card = input.closest('.card');
+    const card = input.closest('.upload-card');
 
-    setupDragAndDrop(card, input, selectedFileText, progressBar);
+    setupDragAndDrop(
+        card,
+        input,
+        selectedFileText,
+        progressBar,
+        config.progressBarId,
+        removeButton,
+    );
+
+    // Remove selected file
+    removeButton.addEventListener('click', () => {
+        // Clear file input
+        input.value = '';
+
+        // Reset text
+        selectedFileText.textContent = 'No file selected';
+
+        // Reset progress bar
+        resetProgress(progressBar);
+
+        // Hide remove button
+        removeButton.classList.add('d-none');
+    });
 }
 
 // ======================================
 // Drag and Drop
 // ======================================
 
-function setupDragAndDrop(card, input, selectedFileText, progressBar) {
+function setupDragAndDrop(
+    card,
+    input,
+    selectedFileText,
+    progressBar,
+    progressBarId,
+    removeButton,
+) {
     card.addEventListener('dragover', (event) => {
         event.preventDefault();
 
@@ -77,16 +112,17 @@ function setupDragAndDrop(card, input, selectedFileText, progressBar) {
             return;
         }
 
-        // Assign dropped file to input
         const dataTransfer = new DataTransfer();
 
         dataTransfer.items.add(file);
 
         input.files = dataTransfer.files;
 
-        displaySelectedFile(file, selectedFileText, config.progressBarId);
-
         resetProgress(progressBar);
+
+        displaySelectedFile(file, selectedFileText, progressBarId);
+
+        removeButton.classList.remove('d-none');
     });
 }
 
@@ -129,7 +165,7 @@ function updateFileSelectedProgress(progressBarId) {
     const progressBar = document.getElementById(progressBarId);
 
     progressBar.style.width = '100%';
-    progressBar.textContent = 'Ready';
+    // progressBar.textContent = 'Ready';
 
     progressBar.classList.remove('bg-primary');
     progressBar.classList.add('bg-success');
