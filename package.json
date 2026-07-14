@@ -30,7 +30,7 @@
   "build": {
     "appId": "com.EasyTreeNursery.weeklyfileuploader",
 
-    "productName": "File_Uploader",
+    "productName": "Easy Tree File Uploader",
 
     "artifactName": "${productName}-Installer-${version}.${ext}",
 
@@ -47,7 +47,7 @@
 
     "win": {
         "target": "nsis",
-        "icon": "assets/simple_logo/favicon.ico"
+        "icon": "assets/favicon.ico"
     }
 }
 }
