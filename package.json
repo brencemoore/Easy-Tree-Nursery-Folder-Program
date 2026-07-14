@@ -32,6 +32,8 @@
 
     "productName": "File_Uploader",
 
+    "artifactName": "${productName}-Installer-${version}.${ext}",
+
     "directories": {
         "output": "dist"
     },
