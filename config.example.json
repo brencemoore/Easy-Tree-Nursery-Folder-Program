@@ -4,6 +4,9 @@
     "bucketName": "",
 
     "urlEndpoint": "",
-    "weeklyObjectName": "",
-    "bnbObjectName": ""
+    
+    "uploads": {
+        "overall": "",
+        "bnb": ""
+    }
 }
