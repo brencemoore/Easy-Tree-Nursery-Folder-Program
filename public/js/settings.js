@@ -25,6 +25,8 @@ async function loadSettings() {
     document.getElementById('txtEndpoint').value = config.urlEndpoint;
     document.getElementById('txtOverallFile').value = config.uploads.overall;
     document.getElementById('txtBNBFile').value = config.uploads.bnb;
+    document.getElementById('txtPdf1File').value = config.uploads.pdf1;
+    document.getElementById('txtPdf2File').value = config.uploads.pdf2;
 }
 
 // ================================
@@ -40,6 +42,8 @@ async function saveSettings() {
         uploads: {
             overall: document.getElementById('txtOverallFile').value,
             bnb: document.getElementById('txtBNBFile').value,
+            pdf1: document.getElementById('txtPdf1File').value,
+            pdf2: document.getElementById('txtPdf2File').value,
         },
     };
 

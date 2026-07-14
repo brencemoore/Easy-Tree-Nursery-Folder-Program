@@ -18,6 +18,8 @@ const defaultConfig = {
     uploads: {
         overall: '',
         bnb: '',
+        pdf1: '',
+        pdf2: ''
     },
 };
 

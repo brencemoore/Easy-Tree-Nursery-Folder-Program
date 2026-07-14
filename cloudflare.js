@@ -93,6 +93,8 @@ async function uploadFiles(files) {
     for (const file of files) {
         let objectName;
 
+        console.log("Processing type:", file.type);
+
         if (file.type === 'overall') {
             objectName = config.uploads.overall;
         }
@@ -100,6 +102,16 @@ async function uploadFiles(files) {
         if (file.type === 'bnb') {
             objectName = config.uploads.bnb;
         }
+
+        if (file.type === 'pdf1') {
+            objectName = config.uploads.pdf1;
+        }
+
+        if (file.type === 'pdf2') {
+            objectName = config.uploads.pdf2;
+        }
+
+        console.log("Object name:", objectName);
 
         console.log('Uploading', file.filePath, 'as', objectName);
 

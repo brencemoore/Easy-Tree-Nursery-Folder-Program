@@ -18,6 +18,20 @@ const uploadConfigs = [
         removeButtonId: 'BNBRemoveFile',
         changeIconColor: 'BNBUploadIcon',
     },
+    {
+        inputId: 'pdf1Report',
+        selectedFileId: 'pdf1SelectedFile',
+        progressBarId: 'pdf1ProgressBar',
+        removeButtonId: 'pdf1RemoveFile',
+        changeIconColor: 'pdf1UploadIcon',
+    },
+    {
+        inputId: 'pdf2Report',
+        selectedFileId: 'pdf2SelectedFile',
+        progressBarId: 'pdf2ProgressBar',
+        removeButtonId: 'pdf2RemoveFile',
+        changeIconColor: 'pdf2UploadIcon',
+    },
 ];
 
 // Initialize upload cards
@@ -37,11 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const weeklyFile = document.getElementById('weeklyReport').files[0];
             const bnbFile = document.getElementById('BNBReport').files[0];
+            const pdf1File = document.getElementById('pdf1Report').files[0];
+            const pdf2File = document.getElementById('pdf2Report').files[0];
 
-            console.log('Weekly file:', weeklyFile);
-            console.log('BNB file:', bnbFile);
-
-            if (!weeklyFile && !bnbFile) {
+            if (!weeklyFile && !bnbFile && !pdf1File && !pdf2File) {
                 alert('Please select files first');
 
                 return;
@@ -60,6 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 files.push({
                     type: 'bnb',
                     filePath: window.api.getPathForFile(bnbFile),
+                });
+            }
+
+            if (pdf1File) {
+                files.push({
+                    type: 'pdf1',
+                    filePath: window.api.getPathForFile(pdf1File),
+                });
+            }
+
+            if (pdf2File) {
+                files.push({
+                    type: 'pdf2',
+                    filePath: window.api.getPathForFile(pdf2File),
                 });
             }
 
@@ -240,6 +267,8 @@ function populateConfirmModal() {
     // Get files
     const weeklyFile = document.getElementById('weeklyReport').files[0];
     const bnbFile = document.getElementById('BNBReport').files[0];
+    const pdf1File = document.getElementById('pdf1Report').files[0];
+    const pdf2File = document.getElementById('pdf2Report').files[0];
 
     let html = '';
 
@@ -249,15 +278,29 @@ function populateConfirmModal() {
 
     html += `
         <li class="list-group-item d-flex justify-content-between">
-            <span>Weekly Availability</span>
+            <span>Container Availability .xlsx</span>
             <strong>${weeklyFile ? weeklyFile.name : 'No file selected'}</strong>
         </li>
     `;
 
     html += `
         <li class="list-group-item d-flex justify-content-between">
-            <span>B&B Field Availability</span>
+            <span>B&B Field Stock Availability .xlsx</span>
             <strong>${bnbFile ? bnbFile.name : 'No file selected'}</strong>
+        </li>
+    `;
+
+    html += `
+        <li class="list-group-item d-flex justify-content-between">
+            <span>Container Availability .pdf</span>
+            <strong>${pdf1File ? pdf1File.name : 'No file selected'}</strong>
+        </li>
+    `;
+
+    html += `
+        <li class="list-group-item d-flex justify-content-between">
+            <span>B&B Field Stock Availability .pdf</span>
+            <strong>${pdf2File ? pdf2File.name : 'No file selected'}</strong>
         </li>
     `;
 

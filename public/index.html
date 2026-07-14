@@ -18,7 +18,7 @@
 
         <nav class="navbar navbar-expand-sm bg-dark-subtle fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Weekly File Uploader</a>
+                <a class="navbar-brand" href="#">Easy Tree Nursery File Uploader</a>
 
                 <div class="ms-auto">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settingsModal">
@@ -52,7 +52,7 @@
 
                         <div class="col-12 col-md-6">
                             <div class="card upload-card shadow-sm h-100">
-                                <div class="card-header text-center fw-semibold">Weekly Availability</div>
+                                <div class="card-header text-center fw-semibold">Container Availability (.xlsx)</div>
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
@@ -82,11 +82,11 @@
                             </div>
                         </div>
 
-                        <!-- B&B Availability -->
+                        <!-- B&B Field Stock Availability -->
 
                         <div class="col-12 col-md-6">
                             <div class="card upload-card shadow-sm h-100">
-                                <div class="card-header text-center fw-semibold">B&B Field Availability</div>
+                                <div class="card-header text-center fw-semibold">B&B Field Stock Availability</div>
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
@@ -118,16 +118,16 @@
                             </div>
                         </div>
 
-                        <!-- PDF #1 -->
+                        <!-- Container Availability PDF -->
 
                         <div class="col-12 col-md-6">
                             <div class="card upload-card shadow-sm h-100">
                                 <!--EDIT-->
-                                <div class="card-header text-center fw-semibold">PDF #1</div>
+                                <div class="card-header text-center fw-semibold">Container Availability (.pdf)</div>
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
-                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                        <i class="bi bi-file-earmark-arrow-up" id="pdf1UploadIcon"></i>
                                     </div>
 
                                     <p class="text-muted">
@@ -135,10 +135,10 @@
                                     </p>
 
                                     <!--EDIT-->
-                                    <input type="file" id="pdf1" hidden />
+                                    <input type="file" id="pdf1Report" hidden />
 
                                     <!--EDIT-->
-                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf1').click()">
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf1Report').click()">
                                         <i class="bi bi-plus-circle me-2"></i>
                                         Browse File
                                     </button>
@@ -160,16 +160,16 @@
                             </div>
                         </div>
 
-                        <!-- PDF #2 -->
+                        <!-- B&B Field Stock Availability PDF -->
 
                         <div class="col-12 col-md-6">
                             <div class="card upload-card shadow-sm h-100">
                                 <!--EDIT-->
-                                <div class="card-header text-center fw-semibold">PDF #2</div>
+                                <div class="card-header text-center fw-semibold">B&B Field Stock Availability (.pdf)</div>
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
-                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                        <i class="bi bi-file-earmark-arrow-up" id="pdf2UploadIcon"></i>
                                     </div>
 
                                     <p class="text-muted">
@@ -177,10 +177,10 @@
                                     </p>
 
                                     <!--EDIT-->
-                                    <input type="file" id="pdf2" hidden />
+                                    <input type="file" id="pdf2Report" hidden />
 
                                     <!--EDIT-->
-                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf2').click()">
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf2Report').click()">
                                         <i class="bi bi-plus-circle me-2"></i>
                                         Browse File
                                     </button>
@@ -270,28 +270,28 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label"> Overall Availability File Name </label>
+                            <label class="form-label"> Container Availability .xlsx File Name </label>
 
                             <input class="form-control" type="text" id="txtOverallFile" />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label"> B&B Availability File Name </label>
+                            <label class="form-label"> B&B Field Stock Availability .xlsx File Name </label>
 
                             <input class="form-control" type="text" id="txtBNBFile" />
                         </div>
 
-                        <!-- <div class="mb-3">
-                            <label class="form-label"> PDF File 1 </label>
+                        <div class="mb-3">
+                            <label class="form-label"> Container Availability .pdf File Name </label>
 
-                            <input class="form-control" type="text" id="test1"/>
+                            <input class="form-control" type="text" id="txtPdf1File"/>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label"> PDF File 2 </label>
+                            <label class="form-label"> B&B Field Stock Availability .pdf File Name </label>
 
-                            <input class="form-control" type="text" id="test2"/>
-                        </div> -->
+                            <input class="form-control" type="text" id="txtPdf2File"/>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
