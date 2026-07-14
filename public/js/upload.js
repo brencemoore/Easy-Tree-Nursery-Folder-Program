@@ -9,6 +9,7 @@ const uploadConfigs = [
         selectedFileId: 'weeklySelectedFile',
         progressBarId: 'weeklyProgressBar',
         removeButtonId: 'weeklyRemoveFile',
+        changeIconColor: 'weeklyUploadIcon',
     },
     {
         inputId: 'BNBReport',
@@ -34,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Upload button clicked');
 
             const weeklyFile = document.getElementById('weeklyReport').files[0];
-
             const bnbFile = document.getElementById('BNBReport').files[0];
 
             console.log('Weekly file:', weeklyFile);
@@ -89,6 +89,7 @@ function setupFileUpload(config) {
     const selectedFileText = document.getElementById(config.selectedFileId);
     const progressBar = document.getElementById(config.progressBarId);
     const removeButton = document.getElementById(config.removeButtonId);
+    const changeIconColor = document.getElementById(config.changeIconColor);
 
     // Browse button file selection
     input.addEventListener('change', () => {
@@ -100,6 +101,7 @@ function setupFileUpload(config) {
             displaySelectedFile(file, selectedFileText, config.progressBarId);
 
             removeButton.classList.remove('d-none');
+            changeIconColor.classList.add('text-success')
         }
     });
 
@@ -113,6 +115,7 @@ function setupFileUpload(config) {
         progressBar,
         config.progressBarId,
         removeButton,
+        changeIconColor,
     );
 
     // Remove selected file
@@ -128,6 +131,7 @@ function setupFileUpload(config) {
 
         // Hide remove button
         removeButton.classList.add('d-none');
+        changeIconColor.classList.remove('text-success')
     });
 }
 
@@ -142,6 +146,7 @@ function setupDragAndDrop(
     progressBar,
     progressBarId,
     removeButton,
+    changeIconColor,
 ) {
     card.addEventListener('dragover', (event) => {
         event.preventDefault();
@@ -175,6 +180,7 @@ function setupDragAndDrop(
         displaySelectedFile(file, selectedFileText, progressBarId);
 
         removeButton.classList.remove('d-none');
+        changeIconColor.classList.add('text-success');
     });
 }
 

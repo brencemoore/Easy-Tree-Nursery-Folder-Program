@@ -6,6 +6,7 @@
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';" /> -->
 
         <link href="./css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
         <link href="./css/style.css" rel="stylesheet" />
 
         <title>Weekly File Uploader</title>
@@ -27,7 +28,7 @@
 
         <!-- Upload Center -->
 
-        <div class="container pt-5 pb-3 mt-4">
+        <div class="container pt-5 pb-4 mt-4">
             <div class="card upload-center shadow-lg">
                 <!-- Header -->
                 <div class="card-header text-center py-3">
@@ -52,21 +53,20 @@
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
-                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                        <i class="bi bi-file-earmark-arrow-up" id="weeklyUploadIcon"></i>
                                     </div>
 
-                                    <p class="text-muted">
-                                        Drag and drop your file here
-                                        <br />
-                                        or browse
-                                    </p>
+                                    <p class="text-muted">Drag and drop your file here or browse</p>
 
                                     <input type="file" id="weeklyReport" hidden />
 
-                                    <button class="btn btn-outline-primary px-4" onclick="document.getElementById('weeklyReport').click()">Browse File</button>
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('weeklyReport').click()">
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        Browse File
+                                    </button>
 
-                                    <button class="btn btn-outline-danger px-4 ms-2 d-none" id="weeklyRemoveFile">
-                                        <i class="bi bi-x-circle"></i>
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="weeklyRemoveFile">
+                                        <i class="bi bi-x-circle me-2"></i>
                                         Remove File
                                     </button>
 
@@ -91,16 +91,17 @@
                                     </div>
 
                                     <p class="text-muted">
-                                        Drag and drop your file here
-                                        <br />
-                                        or browse
+                                        Drag and drop your file here or browse
                                     </p>
 
                                     <input type="file" id="BNBReport" hidden />
 
-                                    <button class="btn btn-outline-primary px-4" onclick="document.getElementById('BNBReport').click()">Browse File</button>
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('BNBReport').click()">
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        Browse File
+                                    </button>
 
-                                    <button class="btn btn-outline-danger px-4 ms-2 d-none" id="BNBRemoveFile">
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="BNBRemoveFile">
                                         <i class="bi bi-x-circle"></i>
                                         Remove File
                                     </button>
@@ -114,11 +115,95 @@
                             </div>
                         </div>
 
-                        <!-- Upload Button -->
+                        <!-- PDF #1 -->
 
                         <div class="col-12 col-md-6">
-                            <button type="button" class="btn btn-primary btn-lg w-100 shadow-sm" id="btnFileUpload" data-bs-toggle="modal" data-bs-target="#confirmModal">
-                                <i class="bi bi-upload"></i>
+                            <div class="card upload-card shadow-sm h-100">
+                                <!--EDIT-->
+                                <div class="card-header text-center fw-semibold">PDF #1</div>
+
+                                <div class="card-body text-center">
+                                    <div class="upload-icon">
+                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                    </div>
+
+                                    <p class="text-muted">
+                                        Drag and drop your file here or browse
+                                    </p>
+
+                                    <!--EDIT-->
+                                    <input type="file" id="pdf1" hidden />
+
+                                    <!--EDIT-->
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf1').click()">
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        Browse File
+                                    </button>
+
+                                    <!--EDIT-->
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="pdf1RemoveFile">
+                                        <i class="bi bi-x-circle"></i>
+                                        Remove File
+                                    </button>
+
+                                    <!--EDIT-->
+                                    <p class="selected-file mt-3 mb-0" id="pdf1SelectedFile">No file selected</p>
+
+                                    <div class="progress mt-3">
+                                        <!--EDIT-->
+                                        <div class="progress-bar" id="pdf1ProgressBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PDF #2 -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="card upload-card shadow-sm h-100">
+                                <!--EDIT-->
+                                <div class="card-header text-center fw-semibold">PDF #2</div>
+
+                                <div class="card-body text-center">
+                                    <div class="upload-icon">
+                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                    </div>
+
+                                    <p class="text-muted">
+                                        Drag and drop your file here or browse
+                                    </p>
+
+                                    <!--EDIT-->
+                                    <input type="file" id="pdf2" hidden />
+
+                                    <!--EDIT-->
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf2').click()">
+                                        <i class="bi bi-plus-circle me-2"></i>
+                                        Browse File
+                                    </button>
+
+                                    <!--EDIT-->
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="pdf2RemoveFile">
+                                        <i class="bi bi-x-circle"></i>
+                                        Remove File
+                                    </button>
+
+                                    <!--EDIT-->
+                                    <p class="selected-file mt-3 mb-0" id="pdf2SelectedFile">No file selected</p>
+
+                                    <div class="progress mt-3">
+                                        <!--EDIT-->
+                                        <div class="progress-bar" id="pdf2ProgressBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upload Button -->
+
+                        <div class="col-12 col-md-6 text-center">
+                            <button type="button" class="btn btn-success btn-lg w-75 shadow-sm" id="btnFileUpload" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                <i class="bi bi-upload me-3"></i>
                                 Upload Files
                             </button>
                         </div>
@@ -138,7 +223,7 @@
                     </div>
                     <div class="modal-body" id="confirmModalBody"></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-success" id="btnConfirmUpload" data-bs-dismiss="modal">Confirm Upload</button>
                     </div>
                 </div>
@@ -148,7 +233,7 @@
         <!-- Settings Modal -->
 
         <div class="modal fade" id="settingsModal" data-bs-backdrop="static" tabindex="-1">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Settings</h5>
@@ -158,44 +243,56 @@
 
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label"> Cloudflare Endpoint (URL) </label>
+                            <label class="form-label"> Cloudflare Endpoint (S3 API) (URL) </label>
 
-                            <input class="form-control" type="text" id="txtEndpoint"/>
+                            <input class="form-control" type="text" id="txtEndpoint" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label"> Bucket Name </label>
 
-                            <input class="form-control" type="text" id="txtBucket"/>
+                            <input class="form-control" type="text" id="txtBucket" />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label"> Access Key </label>
+                            <label class="form-label"> Access Key ID </label>
 
-                            <input class="form-control" type="text" id="txtAccessKey"/>
+                            <input class="form-control" type="text" id="txtAccessKey" />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label"> Secret Key </label>
+                            <label class="form-label"> Secret Access Key </label>
 
-                            <input class="form-control" type="password" id="txtSecretKey"/>
+                            <input class="form-control" type="password" id="txtSecretKey" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label"> Overall Availability File Name </label>
 
-                            <input class="form-control" type="text" id="txtOverallFile"/>
+                            <input class="form-control" type="text" id="txtOverallFile" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label"> B&B Availability File Name </label>
 
-                            <input class="form-control" type="text" id="txtBNBFile"/>
+                            <input class="form-control" type="text" id="txtBNBFile" />
                         </div>
+
+                        <!-- <div class="mb-3">
+                            <label class="form-label"> PDF File 1 </label>
+
+                            <input class="form-control" type="text" id="test1"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> PDF File 2 </label>
+
+                            <input class="form-control" type="text" id="test2"/>
+                        </div> -->
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
 
                         <button class="btn btn-primary" data-bs-dismiss="modal" id="btnSaveSettings">Save Settings</button>
                     </div>
