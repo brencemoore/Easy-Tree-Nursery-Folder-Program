@@ -41,7 +41,8 @@
     "files": [
         "**/*",
         "!config.json",
-        "!node_modules/.cache/**/*"
+        "!node_modules/.cache/**/*",
+        "!dist"
     ],
 
     "win": {
