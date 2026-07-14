@@ -16,6 +16,7 @@ const uploadConfigs = [
         selectedFileId: 'BNBSelectedFile',
         progressBarId: 'BNBProgressBar',
         removeButtonId: 'BNBRemoveFile',
+        changeIconColor: 'BNBUploadIcon',
     },
 ];
 
