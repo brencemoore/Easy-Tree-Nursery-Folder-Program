@@ -4,16 +4,15 @@
 
 const fs = require('fs');
 const path = require('path');
+const { app } = require('electron');
 
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 
 // Load configuration
 function getConfig() {
-    const configPath = path.join(__dirname, 'config.json');
+    const configPath = path.join(app.getPath('userData'), 'config.json');
 
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-
-    return config;
+    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
 }
 
 // Create Cloudflare R2 client
