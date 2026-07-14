@@ -3,6 +3,8 @@ const path = require('path');
 
 const { uploadFiles } = require('./cloudflare');
 
+const { loadConfig, saveConfig } = require('./configManager');
+
 function createWindow() {
     const window = new BrowserWindow({
         width: 800,
@@ -11,7 +13,7 @@ function createWindow() {
         minWidth: 400,
         minHeight: 400,
 
-        icon: path.join(__dirname, "assets", "simple_logo", "favicon.ico"),
+        icon: path.join(__dirname, 'assets', 'simple_logo', 'favicon.ico'),
 
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
@@ -26,14 +28,26 @@ function createWindow() {
 app.whenReady().then(() => {
     createWindow();
 
-    ipcMain.handle('upload-files', async (event, files) => {
+    // Loads config.hs to settings
+    ipcMain.handle('load-config', () => {
+        return loadConfig();
+    });
 
-        console.log("Received in main.js:");
+    // Saves settings to config.js
+    ipcMain.handle('save-config', (event, config) => {
+        saveConfig(config);
+
+        return true;
+    });
+
+    // Gets files to upload
+    ipcMain.handle('upload-files', async (event, files) => {
+        console.log('Received in main.js:');
         console.log(files);
 
         const result = await uploadFiles(files);
 
-        console.log("Upload result:");
+        console.log('Upload result:');
         console.log(result);
 
         return result;
