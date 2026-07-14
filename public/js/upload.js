@@ -24,7 +24,60 @@ document.addEventListener('DOMContentLoaded', () => {
         setupFileUpload(config);
     });
 
-    document.getElementById("btnFileUpload").addEventListener("click", populateConfirmModal);
+    document
+        .getElementById('btnFileUpload')
+        .addEventListener('click', populateConfirmModal);
+
+    document
+        .getElementById('btnConfirmUpload')
+        .addEventListener('click', async () => {
+            console.log('Upload button clicked');
+
+            const weeklyFile = document.getElementById('weeklyReport').files[0];
+
+            const bnbFile = document.getElementById('BNBReport').files[0];
+
+            console.log('Weekly file:', weeklyFile);
+            console.log('BNB file:', bnbFile);
+
+            if (!weeklyFile && !bnbFile) {
+                alert('Please select files first');
+
+                return;
+            }
+
+            const files = [];
+
+            if (weeklyFile) {
+                files.push({
+                    type: 'overall',
+                    filePath: window.api.getPathForFile(weeklyFile),
+                });
+            }
+
+            if (bnbFile) {
+                files.push({
+                    type: 'bnb',
+                    filePath: window.api.getPathForFile(bnbFile),
+                });
+            }
+
+            console.log(files);
+
+            console.log('Sending to Electron:', files);
+
+            const result = await window.api.uploadFiles(files);
+
+            console.log(result);
+
+            if (result.some((x) => !x.success)) {
+                alert('Upload failed. Check console.');
+            } else {
+                alert('Upload successful!');
+            }
+
+            // alert('Upload complete');
+        });
 });
 
 // ======================================
@@ -205,4 +258,3 @@ function populateConfirmModal() {
 
     body.innerHTML = html;
 }
-
