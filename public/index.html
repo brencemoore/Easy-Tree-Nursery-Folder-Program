@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';" /> -->
+
+        <link href="./css/bootstrap.min.css" rel="stylesheet" />
+        <link href="./css/style.css" rel="stylesheet" />
+
+        <title>Weekly File Uploader</title>
+    </head>
+
+    <body class="bg-dark">
+        <!---->
+        <!-- Navbar -->
+
+        <nav class="navbar navbar-expand-sm bg-dark-subtle fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Weekly File Uploader</a>
+
+                <div class="ms-auto">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settingsModal">⚙ Settings</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Upload Center -->
+
+        <div class="container pt-5 pb-3 mt-4">
+            <div class="card upload-center shadow-lg">
+                <!-- Header -->
+                <div class="card-header text-center py-3">
+                    <h3 class="mb-0">
+                        <i class="bi bi-cloud-arrow-up"></i>
+                        Upload Center
+                    </h3>
+
+                    <p class="text-muted mb-0">Select your files to upload to Easy Tree Nursery</p>
+                </div>
+
+                <!-- Body -->
+
+                <div class="card-body">
+                    <div class="row justify-content-center g-4">
+                        <!---->
+                        <!-- Weekly Availability -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="card upload-card shadow-sm h-100">
+                                <div class="card-header text-center fw-semibold">Weekly Availability</div>
+
+                                <div class="card-body text-center">
+                                    <div class="upload-icon">
+                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                    </div>
+
+                                    <p class="text-muted">
+                                        Drag and drop your file here
+                                        <br />
+                                        or browse
+                                    </p>
+
+                                    <input type="file" id="weeklyReport" hidden />
+
+                                    <button class="btn btn-outline-primary px-4" onclick="document.getElementById('weeklyReport').click()">Browse File</button>
+
+                                    <button class="btn btn-outline-danger px-4 ms-2 d-none" id="weeklyRemoveFile">
+                                        <i class="bi bi-x-circle"></i>
+                                        Remove File
+                                    </button>
+
+                                    <p class="selected-file mt-3 mb-0" id="weeklySelectedFile">No file selected</p>
+
+                                    <div class="progress mt-3">
+                                        <div class="progress-bar" id="weeklyProgressBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- B&B Availability -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="card upload-card shadow-sm h-100">
+                                <div class="card-header text-center fw-semibold">B&B Field Availability</div>
+
+                                <div class="card-body text-center">
+                                    <div class="upload-icon">
+                                        <i class="bi bi-file-earmark-arrow-up"></i>
+                                    </div>
+
+                                    <p class="text-muted">
+                                        Drag and drop your file here
+                                        <br />
+                                        or browse
+                                    </p>
+
+                                    <input type="file" id="BNBReport" hidden />
+
+                                    <button class="btn btn-outline-primary px-4" onclick="document.getElementById('BNBReport').click()">Browse File</button>
+
+                                    <button class="btn btn-outline-danger px-4 ms-2 d-none" id="BNBRemoveFile">
+                                        <i class="bi bi-x-circle"></i>
+                                        Remove File
+                                    </button>
+
+                                    <p class="selected-file mt-3 mb-0" id="BNBSelectedFile">No file selected</p>
+
+                                    <div class="progress mt-3">
+                                        <div class="progress-bar" id="BNBProgressBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Upload Button -->
+
+                        <div class="col-12 col-md-6">
+                            <button type="button" class="btn btn-primary btn-lg w-100 shadow-sm" id="btnFileUpload" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                <i class="bi bi-upload"></i>
+                                Upload Files
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm Modal -->
+
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="confirmModalLabel">Confirm File Upload</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="confirmModalBody"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" id="btnConfirmUpload" data-bs-dismiss="modal">Confirm Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+
+        <div class="modal fade" id="settingsModal" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Settings</h5>
+
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label"> Cloudflare Endpoint (URL) </label>
+
+                            <input class="form-control" type="text" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> Bucket Name </label>
+
+                            <input class="form-control" type="text" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> Access Key </label>
+
+                            <input class="form-control" type="text" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> Secret Key </label>
+
+                            <input class="form-control" type="password" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> Overall Availability File Name </label>
+
+                            <input class="form-control" type="text" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> B&B Availability File Name </label>
+
+                            <input class="form-control" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                        <button class="btn btn-primary" data-bs-dismiss="modal">Save Settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/bootstrap.bundle.min.js"></script>
+        <script src="./js/upload.js"></script>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "accessKeyId": "",
+    "secretAccessKey": "",
+    "bucketName": "",
+
+    "urlEndpoint": "",
+    
+    "uploads": {
+        "overall": "",
+        "bnb": ""
+    }
+}
