@@ -1,53 +1,48 @@
 {
-  "name": "easy-tree-nursery-folder-program",
-  "version": "1.1.0",
-  "description": "",
-  "homepage": "https://github.com/brencemoore/Easy-Tree-Nursery-Folder-Program#readme",
-  "bugs": {
-    "url": "https://github.com/brencemoore/Easy-Tree-Nursery-Folder-Program/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brencemoore/Easy-Tree-Nursery-Folder-Program.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
-    "dist": "electron-builder"
-  },
-  "dependencies": {
-    "@aws-sdk/client-s3": "^3.1086.0",
-    "express": "^5.2.1"
-  },
-  "devDependencies": {
-    "electron": "^43.1.0",
-    "electron-builder": "^26.15.3"
-  },
-  "build": {
-    "appId": "com.EasyTreeNursery.weeklyfileuploader",
-
-    "productName": "Easy Tree File Uploader",
-
-    "artifactName": "${productName}-Installer-${version}.${ext}",
-
-    "directories": {
-        "output": "dist"
+    "name": "easy-tree-nursery-folder-program",
+    "version": "1.1.0",
+    "description": "",
+    "homepage": "https://github.com/brencemoore/Easy-Tree-Nursery-Folder-Program#readme",
+    "bugs": {
+        "url": "https://github.com/brencemoore/Easy-Tree-Nursery-Folder-Program/issues"
     },
-
-    "files": [
-        "**/*",
-        "!config.json",
-        "!node_modules/.cache/**/*",
-        "!dist"
-    ],
-
-    "win": {
-        "target": "nsis",
-        "icon": "assets/favicon.ico"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brencemoore/Easy-Tree-Nursery-Folder-Program.git"
+    },
+    "license": "ISC",
+    "author": "",
+    "type": "commonjs",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron .",
+        "dist": "electron-builder"
+    },
+    "dependencies": {
+        "@aws-sdk/client-s3": "^3.1086.0",
+        "express": "^5.2.1"
+    },
+    "devDependencies": {
+        "electron": "^43.1.0",
+        "electron-builder": "^26.15.3"
+    },
+    "build": {
+        "appId": "com.EasyTreeNursery.weeklyfileuploader",
+        "productName": "Easy Tree File Uploader",
+        "artifactName": "${productName}-Installer-${version}.${ext}",
+        "directories": {
+            "output": "dist"
+        },
+        "files": [
+            "**/*",
+            "!config.json",
+            "!node_modules/.cache/**/*",
+            "!dist"
+        ],
+        "win": {
+            "target": "nsis",
+            "icon": "assets/favicon.ico"
+        }
     }
-}
 }
