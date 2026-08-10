@@ -55,8 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const pdf2File = document.getElementById('pdf2Report').files[0];
 
             if (!weeklyFile && !bnbFile && !pdf1File && !pdf2File) {
-                alert('Please select files first');
 
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No Files Selected',
+                    text: 'Please select at least one file to upload.',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#0d6efd',
+                });
                 return;
             }
 
@@ -92,19 +98,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log(files);
 
-            console.log('Sending to Electron:', files);
+            try {
+                const result = await window.api.uploadFiles(files);
 
-            const result = await window.api.uploadFiles(files);
+                console.log('Upload result:', result);
 
-            console.log(result);
+                if (result.some((x) => !x.success)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Upload Failed',
+                        text: 'One or more files could not be uploaded. Please ensure your settings are correct.',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#dc3545'
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Upload Successful!',
+                        text: 'All selected files were uploaded successfully.',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#198754'
+                    });
+                }
 
-            if (result.some((x) => !x.success)) {
-                alert('Upload failed. Check console.');
-            } else {
-                alert('Upload successful!');
+            } catch (error) {
+                console.error('Upload error:', error);
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Upload Failed',
+                    text: 'Check and ensure your settings are correct.',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#dc3545'
+                });
             }
-
-            // alert('Upload complete');
         });
 });
 
@@ -236,16 +263,7 @@ function resetProgress(progressBar) {
 
 // ======================================
 // Update Progress Bar
-// Used later for Cloudflare upload
 // ======================================
-
-function updateProgress(progressBarId, percent) {
-    const progressBar = document.getElementById(progressBarId);
-
-    progressBar.style.width = `${percent}%`;
-
-    progressBar.textContent = `${percent}%`;
-}
 
 function updateFileSelectedProgress(progressBarId) {
     const progressBar = document.getElementById(progressBarId);
@@ -279,28 +297,36 @@ function populateConfirmModal() {
     html += `
         <li class="list-group-item d-flex justify-content-between">
             <span>Container Availability .xlsx</span>
-            <strong>${weeklyFile ? weeklyFile.name : 'No file selected'}</strong>
+            <strong class="text-end ms-3" style="max-width: 300px; overflow-wrap: anywhere;">
+                ${weeklyFile ? weeklyFile.name : 'No file selected'}
+            </strong>
         </li>
     `;
 
     html += `
         <li class="list-group-item d-flex justify-content-between">
             <span>B&B Field Stock Availability .xlsx</span>
-            <strong>${bnbFile ? bnbFile.name : 'No file selected'}</strong>
+            <strong class="text-end ms-3" style="max-width: 300px; overflow-wrap: anywhere;">
+                ${bnbFile ? bnbFile.name : 'No file selected'}
+            </strong>
         </li>
     `;
 
     html += `
         <li class="list-group-item d-flex justify-content-between">
             <span>Container Availability .pdf</span>
-            <strong>${pdf1File ? pdf1File.name : 'No file selected'}</strong>
+            <strong class="text-end ms-3" style="max-width: 300px; overflow-wrap: anywhere;">
+                ${pdf1File ? pdf1File.name : 'No file selected'}
+            </strong>
         </li>
     `;
 
     html += `
         <li class="list-group-item d-flex justify-content-between">
             <span>B&B Field Stock Availability .pdf</span>
-            <strong>${pdf2File ? pdf2File.name : 'No file selected'}</strong>
+            <strong class="text-end ms-3" style="max-width: 350px; overflow-wrap: anywhere;">
+                ${pdf2File ? pdf2File.name : 'No file selected'}
+            </strong>
         </li>
     `;
 

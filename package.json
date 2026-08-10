@@ -1,6 +1,6 @@
 {
     "name": "easy-tree-nursery-folder-program",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "description": "",
     "homepage": "https://github.com/brencemoore/Easy-Tree-Nursery-Folder-Program#readme",
     "bugs": {
@@ -21,7 +21,8 @@
     },
     "dependencies": {
         "@aws-sdk/client-s3": "^3.1086.0",
-        "express": "^5.2.1"
+        "express": "^5.2.1",
+        "sweetalert2": "^11.26.25"
     },
     "devDependencies": {
         "electron": "^43.1.0",

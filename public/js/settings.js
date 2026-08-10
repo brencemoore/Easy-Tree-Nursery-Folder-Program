@@ -49,5 +49,23 @@ async function saveSettings() {
 
     await window.api.saveConfig(config);
 
-    alert('Settings saved.');
+    // alert('Settings saved.');
+    Swal.fire({
+        icon: 'success',
+        title: 'Settings Updated',
+        text: 'Your settings have been saved successfully.',
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 1700,
+        timerProgressBar: true
+    });
+
+    // Close modal after successful save
+    const modalElement = document.getElementById('settingsModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+
+    if (modal) {
+        modal.hide();
+    }
 }
