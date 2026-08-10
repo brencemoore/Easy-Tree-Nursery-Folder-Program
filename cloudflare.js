@@ -34,6 +34,48 @@ function createR2Client() {
     });
 }
 
+// Used for uploading correct file type to cloudflare
+function getContentType(filePath) {
+    const extension = path.extname(filePath).toLowerCase();
+
+    switch (extension) {
+        case '.pdf':
+            return 'application/pdf';
+
+        case '.xlsx':
+            return 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+
+        case '.xls':
+            return 'application/vnd.ms-excel';
+
+        case '.csv':
+            return 'text/csv';
+
+        case '.txt':
+            return 'text/plain';
+
+        case '.html':
+        case '.htm':
+            return 'text/html';
+
+        case '.json':
+            return 'application/json';
+
+        case '.jpg':
+        case '.jpeg':
+            return 'image/jpeg';
+
+        case '.png':
+            return 'image/png';
+
+        case '.gif':
+            return 'image/gif';
+
+        default:
+            return 'application/octet-stream';
+    }
+}
+
 // ======================================
 // Upload a single file
 // ======================================
@@ -50,18 +92,34 @@ async function uploadFile(filePath, objectName) {
         throw new Error(`File does not exist: ${filePath}`);
     }
 
+    // Get file information
+    const stats = fs.statSync(filePath);
+
+    // Determine MIME type
+    const contentType = getContentType(filePath);
+
+    // Create file stream
     const fileStream = fs.createReadStream(filePath);
 
     const command = new PutObjectCommand({
         Bucket: config.bucketName,
         Key: objectName,
         Body: fileStream,
+        ContentLength: stats.size,
+        ContentType: contentType,
+        ContentDisposition: 'inline',
     });
 
     try {
         await client.send(command);
 
-        return { success: true, file: objectName };
+        console.log('Upload successful:', objectName);
+
+        return {
+            success: true,
+            file: objectName,
+        };
+
     } catch (error) {
         console.error('========== Cloudflare Upload Error ==========');
         console.error(error);
@@ -73,12 +131,6 @@ async function uploadFile(filePath, objectName) {
 
         throw error;
     }
-
-    // catch (error) {
-    //     console.error('Upload failed:', error);
-
-    //     return { success: false, file: objectName, error: error.message };
-    // }
 }
 
 // ======================================
