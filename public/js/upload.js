@@ -10,6 +10,8 @@ const uploadConfigs = [
         progressBarId: 'weeklyProgressBar',
         removeButtonId: 'weeklyRemoveFile',
         changeIconColor: 'weeklyUploadIcon',
+        allowedExtensions: ['.xlsx'],
+        cardTitle: 'Container Availability (.xlsx)',
     },
     {
         inputId: 'BNBReport',
@@ -17,6 +19,8 @@ const uploadConfigs = [
         progressBarId: 'BNBProgressBar',
         removeButtonId: 'BNBRemoveFile',
         changeIconColor: 'BNBUploadIcon',
+        allowedExtensions: ['.xlsx'],
+        cardTitle: 'B&B Field Stock Availability (.xlsx)',
     },
     {
         inputId: 'pdf1Report',
@@ -24,6 +28,8 @@ const uploadConfigs = [
         progressBarId: 'pdf1ProgressBar',
         removeButtonId: 'pdf1RemoveFile',
         changeIconColor: 'pdf1UploadIcon',
+        allowedExtensions: ['.pdf'],
+        cardTitle: 'Container Availability (.pdf)',
     },
     {
         inputId: 'pdf2Report',
@@ -31,6 +37,8 @@ const uploadConfigs = [
         progressBarId: 'pdf2ProgressBar',
         removeButtonId: 'pdf2RemoveFile',
         changeIconColor: 'pdf2UploadIcon',
+        allowedExtensions: ['.pdf'],
+        cardTitle: 'B&B Field Stock Availability (.pdf)',
     },
 ];
 
@@ -151,6 +159,20 @@ function setupFileUpload(config) {
         if (input.files.length > 0) {
             const file = input.files[0];
 
+            // Validates file extension
+            if (!isValidFileType(file, config.allowedExtensions)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Incorrect File Type',
+                text: `${config.cardTitle} requires a ${config.allowedExtensions.join(' or ')} file.`,
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#dc3545'
+            });
+
+            input.value = '';
+            return;
+        }
+
             resetProgress(progressBar);
 
             displaySelectedFile(file, selectedFileText, config.progressBarId);
@@ -171,6 +193,8 @@ function setupFileUpload(config) {
         config.progressBarId,
         removeButton,
         changeIconColor,
+        config.allowedExtensions,
+        config.cardTitle,
     );
 
     // Remove selected file
@@ -202,6 +226,8 @@ function setupDragAndDrop(
     progressBarId,
     removeButton,
     changeIconColor,
+    allowedExtensions,
+    cardTitle,
 ) {
     card.addEventListener('dragover', (event) => {
         event.preventDefault();
@@ -221,6 +247,21 @@ function setupDragAndDrop(
         const file = event.dataTransfer.files[0];
 
         if (!file) {
+            return;
+        }
+
+        // File extension validation
+        if (!isValidFileType(file, allowedExtensions)) {
+            console.log('Invalid File Type')
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Incorrect File Type',
+                text: `${cardTitle} requires a ${allowedExtensions.join(' or ')} file.`,
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#dc3545'
+            });
+
             return;
         }
 
@@ -246,6 +287,18 @@ function setupDragAndDrop(
 function displaySelectedFile(file, element, progressBarId) {
     element.textContent = `Selected: ${file.name}`;
     updateFileSelectedProgress(progressBarId);
+}
+
+// ==================================
+// Validates correct file extension 
+// =======================================
+
+function isValidFileType(file, allowedExtensions) {
+    const fileName = file.name.toLowerCase();
+
+    return allowedExtensions.some((extension) =>
+        fileName.endsWith(extension)
+    );
 }
 
 // ======================================
