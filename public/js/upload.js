@@ -337,7 +337,7 @@ function populateConfirmModal() {
 
     // Get files
     const containerXLSXFile = document.getElementById('containerXLSXReport').files[0];
-    const bnbXLSXFile = document.getElementById('BNBReport').files[0];
+    const bnbXLSXFile = document.getElementById('bnbXLSXReport').files[0];
     const containerPDFFile = document.getElementById('containerPDFReport').files[0];
     const bnbPDFFile = document.getElementById('bnbPDFReport').files[0];
 
