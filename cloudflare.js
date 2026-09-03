@@ -147,20 +147,20 @@ async function uploadFiles(files) {
 
         console.log("Processing type:", file.type);
 
-        if (file.type === 'overall') {
-            objectName = config.uploads.overall;
+        if (file.type === 'containerXLSX') {
+            objectName = config.uploads.containerXLSX;
         }
 
-        if (file.type === 'bnb') {
-            objectName = config.uploads.bnb;
+        if (file.type === 'bnbXLSX') {
+            objectName = config.uploads.bnbXLSX;
         }
 
-        if (file.type === 'pdf1') {
-            objectName = config.uploads.pdf1;
+        if (file.type === 'containerPDF') {
+            objectName = config.uploads.containerPDF;
         }
 
-        if (file.type === 'pdf2') {
-            objectName = config.uploads.pdf2;
+        if (file.type === 'bnbPDF') {
+            objectName = config.uploads.bnbPDF;
         }
 
         console.log("Object name:", objectName);

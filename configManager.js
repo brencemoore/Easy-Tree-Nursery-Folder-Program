@@ -16,10 +16,10 @@ const defaultConfig = {
     urlEndpoint: '',
 
     uploads: {
-        overall: '',
-        bnb: '',
-        pdf1: '',
-        pdf2: ''
+        containerXLSX: '',
+        bnbXLSX: '',
+        containerPDF: '',
+        bnbPDF: ''
     },
 };
 

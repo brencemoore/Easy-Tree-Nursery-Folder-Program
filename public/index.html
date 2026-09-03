@@ -48,7 +48,7 @@
                 <div class="card-body">
                     <div class="row justify-content-center g-4">
                         <!---->
-                        <!-- Weekly Availability -->
+                        <!-- Container XLSX Availability -->
 
                         <div class="col-12 col-md-6">
                             <div class="card upload-card shadow-sm h-100">
@@ -56,33 +56,33 @@
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
-                                        <i class="bi bi-file-earmark-arrow-up" id="weeklyUploadIcon"></i>
+                                        <i class="bi bi-file-earmark-arrow-up" id="containerXLSXUploadIcon"></i>
                                     </div>
 
                                     <p class="text-muted">Drag and drop your file here or browse</p>
 
-                                    <input type="file" id="weeklyReport" accept=".xlsx" hidden />
+                                    <input type="file" id="containerXLSXReport" accept=".xlsx" hidden />
 
-                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('weeklyReport').click()">
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('containerXLSXReport').click()">
                                         <i class="bi bi-plus-circle me-2"></i>
                                         Browse File
                                     </button>
 
-                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="weeklyRemoveFile">
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="containerXLSXRemoveFile">
                                         <i class="bi bi-x-circle me-2"></i>
                                         Remove File
                                     </button>
 
-                                    <p class="selected-file mt-3 mb-0" id="weeklySelectedFile">No file selected</p>
+                                    <p class="selected-file mt-3 mb-0" id="containerXLSXSelectedFile">No file selected</p>
 
                                     <div class="progress mt-3">
-                                        <div class="progress-bar" id="weeklyProgressBar" style="width: 0%"></div>
+                                        <div class="progress-bar" id="containerXLSXProgressBar" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- B&B Field Stock Availability -->
+                        <!-- bnb XLSX Availability -->
 
                         <div class="col-12 col-md-6">
                             <div class="card upload-card shadow-sm h-100">
@@ -90,29 +90,29 @@
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
-                                        <i class="bi bi-file-earmark-arrow-up" id="BNBUploadIcon"></i>
+                                        <i class="bi bi-file-earmark-arrow-up" id="bnbXLSXUploadIcon"></i>
                                     </div>
 
                                     <p class="text-muted">
                                         Drag and drop your file here or browse
                                     </p>
 
-                                    <input type="file" id="BNBReport" accept=".xlsx" hidden />
+                                    <input type="file" id="bnbXLSXReport" accept=".xlsx" hidden />
 
-                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('BNBReport').click()">
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('bnbXLSXReport').click()">
                                         <i class="bi bi-plus-circle me-2"></i>
                                         Browse File
                                     </button>
 
-                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="BNBRemoveFile">
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="bnbXLSXRemoveFile">
                                         <i class="bi bi-x-circle"></i>
                                         Remove File
                                     </button>
 
-                                    <p class="selected-file mt-3 mb-0" id="BNBSelectedFile">No file selected</p>
+                                    <p class="selected-file mt-3 mb-0" id="bnbXLSXSelectedFile">No file selected</p>
 
                                     <div class="progress mt-3">
-                                        <div class="progress-bar" id="BNBProgressBar" style="width: 0%"></div>
+                                        <div class="progress-bar" id="bnbXLSXProgressBar" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
-                                        <i class="bi bi-file-earmark-arrow-up" id="pdf1UploadIcon"></i>
+                                        <i class="bi bi-file-earmark-arrow-up" id="containerPDFUploadIcon"></i>
                                     </div>
 
                                     <p class="text-muted">
@@ -135,26 +135,26 @@
                                     </p>
 
                                     <!--EDIT-->
-                                    <input type="file" id="pdf1Report" accept=".pdf" hidden />
+                                    <input type="file" id="containerPDFReport" accept=".pdf" hidden />
 
                                     <!--EDIT-->
-                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf1Report').click()">
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('containerPDFReport').click()">
                                         <i class="bi bi-plus-circle me-2"></i>
                                         Browse File
                                     </button>
 
                                     <!--EDIT-->
-                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="pdf1RemoveFile">
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="containerPDFRemoveFile">
                                         <i class="bi bi-x-circle"></i>
                                         Remove File
                                     </button>
 
                                     <!--EDIT-->
-                                    <p class="selected-file mt-3 mb-0" id="pdf1SelectedFile">No file selected</p>
+                                    <p class="selected-file mt-3 mb-0" id="containerPDFSelectedFile">No file selected</p>
 
                                     <div class="progress mt-3">
                                         <!--EDIT-->
-                                        <div class="progress-bar" id="pdf1ProgressBar" style="width: 0%"></div>
+                                        <div class="progress-bar" id="containerPDFProgressBar" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
 
                                 <div class="card-body text-center">
                                     <div class="upload-icon">
-                                        <i class="bi bi-file-earmark-arrow-up" id="pdf2UploadIcon"></i>
+                                        <i class="bi bi-file-earmark-arrow-up" id="bnbPDFUploadIcon"></i>
                                     </div>
 
                                     <p class="text-muted">
@@ -177,26 +177,26 @@
                                     </p>
 
                                     <!--EDIT-->
-                                    <input type="file" id="pdf2Report" accept=".pdf" hidden />
+                                    <input type="file" id="bnbPDFReport" accept=".pdf" hidden />
 
                                     <!--EDIT-->
-                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('pdf2Report').click()">
+                                    <button class="btn btn-outline-primary px-4 mx-2 mb-2" onclick="document.getElementById('bnbPDFReport').click()">
                                         <i class="bi bi-plus-circle me-2"></i>
                                         Browse File
                                     </button>
 
                                     <!--EDIT-->
-                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="pdf2RemoveFile">
+                                    <button class="btn btn-outline-danger px-4 mx-2 mb-2 d-none" id="bnbPDFRemoveFile">
                                         <i class="bi bi-x-circle"></i>
                                         Remove File
                                     </button>
 
                                     <!--EDIT-->
-                                    <p class="selected-file mt-3 mb-0" id="pdf2SelectedFile">No file selected</p>
+                                    <p class="selected-file mt-3 mb-0" id="bnbPDFSelectedFile">No file selected</p>
 
                                     <div class="progress mt-3">
                                         <!--EDIT-->
-                                        <div class="progress-bar" id="pdf2ProgressBar" style="width: 0%"></div>
+                                        <div class="progress-bar" id="bnbPDFProgressBar" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -272,25 +272,25 @@
                         <div class="mb-3">
                             <label class="form-label"> Container Availability .xlsx File Name </label>
 
-                            <input class="form-control" type="text" id="txtOverallFile" />
+                            <input class="form-control" type="text" id="txtContainerXLSXFile" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label"> B&B Field Stock Availability .xlsx File Name </label>
 
-                            <input class="form-control" type="text" id="txtBNBFile" />
+                            <input class="form-control" type="text" id="txtBnbXLSXFile" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label"> Container Availability .pdf File Name </label>
 
-                            <input class="form-control" type="text" id="txtPdf1File"/>
+                            <input class="form-control" type="text" id="txtContainerPDFFile"/>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label"> B&B Field Stock Availability .pdf File Name </label>
 
-                            <input class="form-control" type="text" id="txtPdf2File"/>
+                            <input class="form-control" type="text" id="txtBnbPDFFile"/>
                         </div>
                     </div>
 

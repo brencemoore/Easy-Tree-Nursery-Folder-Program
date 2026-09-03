@@ -5,38 +5,38 @@
 
 const uploadConfigs = [
     {
-        inputId: 'weeklyReport',
-        selectedFileId: 'weeklySelectedFile',
-        progressBarId: 'weeklyProgressBar',
-        removeButtonId: 'weeklyRemoveFile',
-        changeIconColor: 'weeklyUploadIcon',
+        inputId: 'containerXLSXReport',
+        selectedFileId: 'containerXLSXSelectedFile',
+        progressBarId: 'containerXLSXProgressBar',
+        removeButtonId: 'containerXLSXRemoveFile',
+        changeIconColor: 'containerXLSXUploadIcon',
         allowedExtensions: ['.xlsx'],
         cardTitle: 'Container Availability (.xlsx)',
     },
     {
-        inputId: 'BNBReport',
-        selectedFileId: 'BNBSelectedFile',
-        progressBarId: 'BNBProgressBar',
-        removeButtonId: 'BNBRemoveFile',
-        changeIconColor: 'BNBUploadIcon',
+        inputId: 'bnbXLSXReport',
+        selectedFileId: 'bnbXLSXSelectedFile',
+        progressBarId: 'bnbXLSXProgressBar',
+        removeButtonId: 'bnbXLSXRemoveFile',
+        changeIconColor: 'bnbXLSXUploadIcon',
         allowedExtensions: ['.xlsx'],
         cardTitle: 'B&B Field Stock Availability (.xlsx)',
     },
     {
-        inputId: 'pdf1Report',
-        selectedFileId: 'pdf1SelectedFile',
-        progressBarId: 'pdf1ProgressBar',
-        removeButtonId: 'pdf1RemoveFile',
-        changeIconColor: 'pdf1UploadIcon',
+        inputId: 'containerPDFReport',
+        selectedFileId: 'containerPDFSelectedFile',
+        progressBarId: 'containerPDFProgressBar',
+        removeButtonId: 'containerPDFRemoveFile',
+        changeIconColor: 'containerPDFUploadIcon',
         allowedExtensions: ['.pdf'],
         cardTitle: 'Container Availability (.pdf)',
     },
     {
-        inputId: 'pdf2Report',
-        selectedFileId: 'pdf2SelectedFile',
-        progressBarId: 'pdf2ProgressBar',
-        removeButtonId: 'pdf2RemoveFile',
-        changeIconColor: 'pdf2UploadIcon',
+        inputId: 'bnbPDFReport',
+        selectedFileId: 'bnbPDFSelectedFile',
+        progressBarId: 'bnbPDFProgressBar',
+        removeButtonId: 'bnbPDFRemoveFile',
+        changeIconColor: 'bnbPDFUploadIcon',
         allowedExtensions: ['.pdf'],
         cardTitle: 'B&B Field Stock Availability (.pdf)',
     },
@@ -57,12 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .addEventListener('click', async () => {
             console.log('Upload button clicked');
 
-            const weeklyFile = document.getElementById('weeklyReport').files[0];
-            const bnbFile = document.getElementById('BNBReport').files[0];
-            const pdf1File = document.getElementById('pdf1Report').files[0];
-            const pdf2File = document.getElementById('pdf2Report').files[0];
+            const containerXLSXFile = document.getElementById('containerXLSXReport').files[0];
+            const bnbXLSXFile = document.getElementById('bnbXLSXReport').files[0];
+            const containerPDFFile = document.getElementById('containerPDFReport').files[0];
+            const bnbPDFFile = document.getElementById('bnbPDFReport').files[0];
 
-            if (!weeklyFile && !bnbFile && !pdf1File && !pdf2File) {
+            if (!containerXLSXFile && !bnbXLSXFile && !containerPDFFile && !bnbPDFFile) {
 
                 Swal.fire({
                     icon: 'warning',
@@ -76,31 +76,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const files = [];
 
-            if (weeklyFile) {
+            if (containerXLSXFile) {
                 files.push({
-                    type: 'overall',
-                    filePath: window.api.getPathForFile(weeklyFile),
+                    type: 'containerXLSX',
+                    filePath: window.api.getPathForFile(containerXLSXFile),
                 });
             }
 
-            if (bnbFile) {
+            if (bnbXLSXFile) {
                 files.push({
-                    type: 'bnb',
-                    filePath: window.api.getPathForFile(bnbFile),
+                    type: 'bnbXLSX',
+                    filePath: window.api.getPathForFile(bnbXLSXFile),
                 });
             }
 
-            if (pdf1File) {
+            if (containerPDFFile) {
                 files.push({
-                    type: 'pdf1',
-                    filePath: window.api.getPathForFile(pdf1File),
+                    type: 'containerPDF',
+                    filePath: window.api.getPathForFile(containerPDFFile),
                 });
             }
 
-            if (pdf2File) {
+            if (bnbPDFFile) {
                 files.push({
-                    type: 'pdf2',
-                    filePath: window.api.getPathForFile(pdf2File),
+                    type: 'bnbPDF',
+                    filePath: window.api.getPathForFile(bnbPDFFile),
                 });
             }
 
@@ -336,10 +336,10 @@ function populateConfirmModal() {
     const body = document.getElementById('confirmModalBody');
 
     // Get files
-    const weeklyFile = document.getElementById('weeklyReport').files[0];
-    const bnbFile = document.getElementById('BNBReport').files[0];
-    const pdf1File = document.getElementById('pdf1Report').files[0];
-    const pdf2File = document.getElementById('pdf2Report').files[0];
+    const containerXLSXFile = document.getElementById('containerXLSXReport').files[0];
+    const bnbXLSXFile = document.getElementById('BNBReport').files[0];
+    const containerPDFFile = document.getElementById('containerPDFReport').files[0];
+    const bnbPDFFile = document.getElementById('bnbPDFReport').files[0];
 
     let html = '';
 
@@ -351,7 +351,7 @@ function populateConfirmModal() {
         <li class="list-group-item d-flex justify-content-between">
             <span>Container Availability .xlsx</span>
             <strong class="text-end ms-3" style="max-width: 300px; overflow-wrap: anywhere;">
-                ${weeklyFile ? weeklyFile.name : 'No file selected'}
+                ${containerXLSXFile ? containerXLSXFile.name : 'No file selected'}
             </strong>
         </li>
     `;
@@ -360,7 +360,7 @@ function populateConfirmModal() {
         <li class="list-group-item d-flex justify-content-between">
             <span>B&B Field Stock Availability .xlsx</span>
             <strong class="text-end ms-3" style="max-width: 300px; overflow-wrap: anywhere;">
-                ${bnbFile ? bnbFile.name : 'No file selected'}
+                ${bnbXLSXFile ? bnbXLSXFile.name : 'No file selected'}
             </strong>
         </li>
     `;
@@ -369,7 +369,7 @@ function populateConfirmModal() {
         <li class="list-group-item d-flex justify-content-between">
             <span>Container Availability .pdf</span>
             <strong class="text-end ms-3" style="max-width: 300px; overflow-wrap: anywhere;">
-                ${pdf1File ? pdf1File.name : 'No file selected'}
+                ${containerPDFFile ? containerPDFFile.name : 'No file selected'}
             </strong>
         </li>
     `;
@@ -378,7 +378,7 @@ function populateConfirmModal() {
         <li class="list-group-item d-flex justify-content-between">
             <span>B&B Field Stock Availability .pdf</span>
             <strong class="text-end ms-3" style="max-width: 350px; overflow-wrap: anywhere;">
-                ${pdf2File ? pdf2File.name : 'No file selected'}
+                ${bnbPDFFile ? bnbPDFFile.name : 'No file selected'}
             </strong>
         </li>
     `;
