@@ -5,6 +5,9 @@ const { uploadFiles } = require('./cloudflare');
 
 const { autoUpdater } = require('electron-updater');
 
+const log = require('electron-log');
+autoUpdater.logger = log;
+
 const { loadConfig, saveConfig } = require('./configManager');
 
 let window;
@@ -31,35 +34,35 @@ function createWindow() {
 
 // Function checks for updates
 function setupAutoUpdater() {
+    log.info('=== AUTO UPDATER STARTED ===');
+
     autoUpdater.on('checking-for-update', () => {
-        console.log('Checking for update...');
+        log.info('Checking for update...');
     });
 
     autoUpdater.on('update-available', (info) => {
-        console.log('Update available:', info.version);
+        log.info('Update available:', info.version);
     });
 
     autoUpdater.on('update-not-available', (info) => {
-        console.log('No update available.');
-        console.log('Current version:', app.getVersion());
+        log.info('No update available.');
+        log.info('Current version:', app.getVersion());
     });
 
     autoUpdater.on('error', (error) => {
-        console.error('Update error:', error);
+        log.error('Update error:', error);
     });
 
     autoUpdater.on('download-progress', (progress) => {
-        console.log(`Download progress: ${progress.percent.toFixed(1)}%`);
+        log.info(`Download progress: ${progress.percent.toFixed(1)}%`);
     });
 
     autoUpdater.on('update-downloaded', (info) => {
-        console.log('Update downloaded:', info.version);
+        log.info('Update downloaded:', info.version);
 
-        if (window) {
-            window.webContents.send('update-downloaded', {
-                version: info.version
-            });
-        }
+        window.webContents.send('update-downloaded', {
+            version: info.version
+        });
     });
 
     autoUpdater.checkForUpdates();
