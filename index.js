@@ -65,7 +65,7 @@ function setupAutoUpdater() {
         });
     });
 
-    autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdatesAndNotify();
 }
 
 app.whenReady().then(() => {

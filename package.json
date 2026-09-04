@@ -33,7 +33,7 @@
     "build": {
         "appId": "com.EasyTreeNursery.weeklyfileuploader",
         "productName": "Easy Tree File Uploader",
-        "artifactName": "${productName}-Installer-${version}.${ext}",
+        "artifactName": "Easy-Tree-File-Uploader-Installer-${version}.${ext}",
         "directories": {
             "output": "dist"
         },
