@@ -54,6 +54,12 @@ function setupAutoUpdater() {
 
     autoUpdater.on('update-downloaded', (info) => {
         console.log('Update downloaded:', info.version);
+
+        if (window) {
+            window.webContents.send('update-downloaded', {
+                version: info.version
+            });
+        }
     });
 
     autoUpdater.checkForUpdates();
