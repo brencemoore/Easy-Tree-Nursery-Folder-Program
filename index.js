@@ -3,6 +3,8 @@ const path = require('path');
 
 const { uploadFiles } = require('./cloudflare');
 
+const { autoUpdater } = require('electron-updater');
+
 const { loadConfig, saveConfig } = require('./configManager');
 
 function createWindow() {
@@ -27,6 +29,8 @@ function createWindow() {
 
 app.whenReady().then(() => {
     createWindow();
+
+    setupAutoUpdater();
 
     // Loads config.hs to settings
     ipcMain.handle('load-config', () => {
@@ -55,3 +59,34 @@ app.whenReady().then(() => {
         // return await uploadFiles(files);
     });
 });
+
+
+// Function checks for updates
+function setupAutoUpdater() {
+    autoUpdater.on('checking-for-update', () => {
+        console.log('Checking for update...');
+    });
+
+    autoUpdater.on('update-available', (info) => {
+        console.log('Update available:', info.version);
+    });
+
+    autoUpdater.on('update-not-available', (info) => {
+        console.log('No update available.');
+        console.log('Current version:', app.getVersion());
+    });
+
+    autoUpdater.on('error', (error) => {
+        console.error('Update error:', error);
+    });
+
+    autoUpdater.on('download-progress', (progress) => {
+        console.log(`Download progress: ${progress.percent.toFixed(1)}%`);
+    });
+
+    autoUpdater.on('update-downloaded', (info) => {
+        console.log('Update downloaded:', info.version);
+    });
+
+    autoUpdater.checkForUpdates();
+}
