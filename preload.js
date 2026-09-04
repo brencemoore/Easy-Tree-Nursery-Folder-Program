@@ -12,4 +12,18 @@ contextBridge.exposeInMainWorld('api', {
     uploadFiles: (files) => {
         return ipcRenderer.invoke('upload-files', files);
     },
+
+    onUpdateDownloaded: (callback) => {
+        ipcRenderer.on('update-downloaded', (event, info) => {
+            callback(info);
+        });
+    },
+
+    installUpdate: () => {
+        return ipcRenderer.invoke('install-update');
+    },
+
+    getAppVersion: () => {
+        return ipcRenderer.invoke('get-app-version');
+    },
 });

@@ -7,8 +7,10 @@ const { autoUpdater } = require('electron-updater');
 
 const { loadConfig, saveConfig } = require('./configManager');
 
+let window;
+
 function createWindow() {
-    const window = new BrowserWindow({
+    window = new BrowserWindow({
         width: 800,
         height: 800,
 
@@ -26,40 +28,6 @@ function createWindow() {
 
     window.loadFile(path.join(__dirname, 'public', 'index.html'));
 }
-
-app.whenReady().then(() => {
-    createWindow();
-
-    setupAutoUpdater();
-
-    // Loads config.hs to settings
-    ipcMain.handle('load-config', () => {
-        return loadConfig();
-    });
-
-    // Saves settings to config.js
-    ipcMain.handle('save-config', (event, config) => {
-        saveConfig(config);
-
-        return true;
-    });
-
-    // Gets files to upload
-    ipcMain.handle('upload-files', async (event, files) => {
-        console.log('Received in main.js:');
-        console.log(files);
-
-        const result = await uploadFiles(files);
-
-        console.log('Upload result:');
-        console.log(result);
-
-        return result;
-
-        // return await uploadFiles(files);
-    });
-});
-
 
 // Function checks for updates
 function setupAutoUpdater() {
@@ -90,3 +58,56 @@ function setupAutoUpdater() {
 
     autoUpdater.checkForUpdates();
 }
+
+app.whenReady().then(() => {
+
+    createWindow();
+
+    // Checks update if running app, skips for development mode
+    if (!app.isPackaged) {
+        console.log('Development mode: skipping auto update check.');
+    } else {
+        setupAutoUpdater();
+    }
+
+    // Loads config.hs to settings
+    ipcMain.handle('load-config', () => {
+        return loadConfig();
+    });
+
+    // Saves settings to config.js
+    ipcMain.handle('save-config', (event, config) => {
+        saveConfig(config);
+
+        return true;
+    });
+
+    // Gets files to upload
+    ipcMain.handle('upload-files', async (event, files) => {
+        console.log('Received in main.js:');
+        console.log(files);
+
+        const result = await uploadFiles(files);
+
+        console.log('Upload result:');
+        console.log(result);
+
+        return result;
+
+        // return await uploadFiles(files);
+    });
+
+    // Installs update
+    ipcMain.handle('install-update', () => {
+        console.log('Installing update...');
+
+        autoUpdater.quitAndInstall();
+    });
+
+    // Gets app version
+    ipcMain.handle('get-app-version', () => {
+        return app.getVersion();
+    });
+});
+
+

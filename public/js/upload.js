@@ -42,8 +42,31 @@ const uploadConfigs = [
     },
 ];
 
+// Shows update to user
+window.api.onUpdateDownloaded((info) => {
+    Swal.fire({
+        icon: 'info',
+        title: 'Update Ready',
+        text: `Version ${info.version} has been downloaded and is ready to install.`,
+        showCancelButton: true,
+        confirmButtonText: 'Restart & Update',
+        cancelButtonText: 'Later',
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#6c757d'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.api.installUpdate();
+        }
+    });
+});
+
 // Initialize upload cards
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+    const version = await window.api.getAppVersion();
+
+    document.getElementById('appVersion').textContent = `v${version}`;
+
     uploadConfigs.forEach((config) => {
         setupFileUpload(config);
     });
