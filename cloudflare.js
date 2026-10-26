@@ -108,6 +108,7 @@ async function uploadFile(filePath, objectName) {
         ContentLength: stats.size,
         ContentType: contentType,
         ContentDisposition: 'inline',
+        CacheControl: 'no-store',
     });
 
     try {
